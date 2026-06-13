@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Embodied Life Consulting</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=DM+Sans:wght@400;500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2d5a4f;
+            --primary-light: #3d7a6a;
+            --accent: #d4a574;
+            --accent-light: #e8c9a0;
+            --neutral-dark: #1a2624;
+            --neutral-light: #f5f3f0;
+            --neutral-muted: #8b9894;
+            --white: #ffffff;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            color: var(--neutral-dark);
+            background-color: var(--white);
+            line-height: 1.6;
+        }
+
+        /* ===== HEADER & NAVIGATION ===== */
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.95);
+            border-bottom: 1px solid rgba(45, 90, 79, 0.1);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.2rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: -1px;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.02);
+        }
+
+        nav a {
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95rem;
+            color: var(--neutral-dark);
+            text-decoration: none;
+            margin-left: 2.5rem;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            margin-top: 70px;
+            padding: 100px 2rem 60px;
+            background: linear-gradient(135deg, rgba(45, 90, 79, 0.6) 0%, rgba(45, 90, 79, 0.6) 100%), url('https://images.unsplash.com/photo-1490573874519-92348fcd54dd?w=1200&h=600&fit=crop') center/cover;
+            background-attachment: fixed;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(212, 165, 116, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(20px, -20px); }
+        }
+
+        .hero-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4.5rem;
+            line-height: 1.1;
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+            animation: slideUp 0.8s ease;
+            text-shadow: 0 2px 10px rgba(26, 38, 36, 0.3);
+        }
+
+        .hero p {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.35rem;
+            color: var(--neutral-light);
+            margin-bottom: 2.5rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: slideUp 0.8s ease 0.1s both;
+            font-weight: 300;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--primary);
+            color: var(--white);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.4s ease;
+            border: 2px solid var(--primary);
+            animation: slideUp 0.8s ease 0.2s both;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .cta-button:hover {
+            background: var(--white);
+            color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(45, 90, 79, 0.15);
+        }
+
+        .cta-button.secondary {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            margin-left: 1rem;
+        }
+
+        .cta-button.secondary:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        /* ===== SERVICES SECTION ===== */
+        .services {
+            padding: 100px 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .section-header p {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.15rem;
+            color: var(--neutral-muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 12px;
+            border: 1px solid rgba(45, 90, 79, 0.1);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 0;
+            background: var(--accent);
+            transition: height 0.4s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(45, 90, 79, 0.12);
+        }
+
+        .service-card:hover::before {
+            height: 100%;
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+        }
+
+        .service-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .service-card p {
+            color: var(--neutral-muted);
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        /* ===== ABOUT SECTION ===== */
+        .about {
+            padding: 100px 2rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: var(--white);
+        }
+
+        .about-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .about p {
+            font-size: 1.05rem;
+            line-height: 1.9;
+            margin-bottom: 1.5rem;
+            opacity: 0.95;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* ===== APPROACH SECTION ===== */
+        .approach {
+            padding: 100px 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .approach-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .approach-item {
+            text-align: center;
+        }
+
+        .approach-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            color: var(--accent);
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .approach-item h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .approach-item p {
+            color: var(--neutral-muted);
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        /* ===== CTA SECTION ===== */
+        .cta-section {
+            padding: 80px 2rem;
+            background: var(--neutral-light);
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .cta-section p {
+            font-size: 1.15rem;
+            color: var(--neutral-muted);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--neutral-dark);
+            color: var(--white);
+            padding: 60px 2rem 30px;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+        }
+
+        .footer-section a {
+            display: block;
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            margin-bottom: 0.8rem;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section-header h2 {
+                font-size: 2.5rem;
+            }
+
+            .about-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .approach-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            nav a {
+                margin-left: 1.5rem;
+                font-size: 0.85rem;
+            }
+
+            .cta-button {
+                margin-bottom: 1rem;
+            }
+
+            .cta-button.secondary {
+                margin-left: 0;
+                margin-top: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header-container {
+                padding: 1rem;
+            }
+
+            .logo {
+                font-size: 1.3rem;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .hero {
+                padding: 80px 1rem 40px;
+                margin-top: 60px;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 0.9rem;
+            }
+
+            .section-header h2 {
+                font-size: 1.8rem;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ===== MODAL STYLES ===== */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(26, 38, 36, 0.6);
+            backdrop-filter: blur(4px);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .modal-content {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 12px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 20px 60px rgba(45, 90, 79, 0.2);
+            animation: slideUp 0.4s ease;
+            position: relative;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--primary);
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            color: var(--neutral-muted);
+            cursor: pointer;
+            transition: color 0.3s ease;
+            padding: 0;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .close-btn:hover {
+            color: var(--primary);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid rgba(45, 90, 79, 0.2);
+            border-radius: 6px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.95rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(212, 165, 116, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-submit {
+            width: 100%;
+            padding: 1rem;
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .form-submit:hover {
+            background: var(--primary-light);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(45, 90, 79, 0.15);
+        }
+
+        .success-message {
+            color: var(--primary);
+            text-align: center;
+            padding: 2rem;
+            display: none;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        .success-message h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .success-message p {
+            color: var(--neutral-muted);
+            margin-bottom: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <div class="header-container">
+            <div class="logo">Embodied Life</div>
+            <nav>
+                <a href="#services">Services</a>
+                <a href="#about">About</a>
+                <a href="#approach">Approach</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-container">
+            <h1>Live with Purpose and Presence</h1>
+            <p>Transform your relationship with your emotions, your physical self, and the world around you through embodied consulting.</p>
+            <button class="cta-button" onclick="openModal('contactModal')">Get Started</button>
+            <button class="cta-button secondary" onclick="document.getElementById('services').scrollIntoView({behavior: 'smooth'})">Learn More</button>
+        </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="services" id="services">
+        <div class="section-header">
+            <h2>Our Services</h2>
+            <p>Comprehensive emotional health consulting<br>to help you embody your best self</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🧘</div>
+                <h3>Body Awareness</h3>
+                <p>Develop a deeper connection with your physical self through somatic exploration and mindful practices.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🧠</div>
+                <h3>Mental Integration</h3>
+                <p>Align your thoughts and beliefs with your values for greater clarity, resilience, and purpose.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🌍</div>
+                <h3>Relational Presence</h3>
+                <p>Strengthen connections with others through authentic communication and embodied leadership.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="about" id="about">
+        <div class="about-container">
+            <div>
+                <h2>Why Embodied Consulting?</h2>
+                <p>We believe that the deepest transformation happens through emotional awareness & regulation; connection with your body; and self compassion & empowerment. Our journey through this life is full of opportunities to get caught up in the swirl, embodied consulting brings you back home—to yourself.</p>
+                <p>Embodied Life Consulting — making sense of your story, grounding your body, and building lasting resilience with trauma-informed, heart-centered support. We don't just talk about growth; we help you feel it, live it, and embody it.</p>
+                <button class="cta-button" onclick="openModal('philosophyModal')">Discover Our Philosophy</button>
+            </div>
+            <div class="about-image">🌿</div>
+        </div>
+    </section>
+
+    <!-- APPROACH -->
+    <section class="approach" id="approach">
+        <div class="section-header">
+            <h2>Our Three-Pillar Approach</h2>
+            <p>A comprehensive framework for embodied transformation</p>
+        </div>
+        <div class="approach-grid">
+            <div class="approach-item">
+                <div class="approach-number">1</div>
+                <h3>Assessment</h3>
+                <p>We begin by understanding your unique needs, challenges, and aspirations through deep listening and somatic inquiry.</p>
+            </div>
+            <div class="approach-item">
+                <div class="approach-number">2</div>
+                <h3>Integration</h3>
+                <p>Through tailored practices and personalized strategies, we help you integrate new ways of being into your daily life.</p>
+            </div>
+            <div class="approach-item">
+                <div class="approach-number">3</div>
+                <h3>Embodiment</h3>
+                <p>You experience sustainable transformation as your new patterns become natural, automatic, and truly embodied.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section" id="contact">
+        <h2>Ready to Transform Your Life?</h2>
+        <p>Take the first step toward greater presence, purpose, and vitality. Schedule a complimentary 15 minute discovery call.</p>
+        <button class="cta-button" onclick="openModal('bookingModal')">Book Your Session</button>
+    </section>
+
+    <!-- MODALS -->
+    
+    <!-- Get Started / Contact Modal -->
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Get Started</h2>
+                <button class="close-btn" onclick="closeModal('contactModal')">&times;</button>
+            </div>
+            <form id="contactForm" action="https://formspree.io/f/mnjoyjbv" method="POST" onsubmit="handleSubmit(event, 'contactForm', 'contactSuccess')">
+                <div class="form-group">
+                    <label for="contactName">Your Name</label>
+                    <input type="text" id="contactName" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="contactEmail">Email Address</label>
+                    <input type="email" id="contactEmail" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="contactPhone">Phone Number</label>
+                    <input type="tel" id="contactPhone" name="phone">
+                </div>
+                <div class="form-group">
+                    <label for="inquiry">What brings you here?</label>
+                    <textarea id="inquiry" name="message" placeholder="Tell us a bit about what you're looking for..." required></textarea>
+                </div>
+                <button type="submit" class="form-submit">Send My Inquiry</button>
+            </form>
+            <div id="contactSuccess" class="success-message">
+                <h3>Thank You! 🙏</h3>
+                <p>We've received your inquiry and will be in touch within 24 hours.</p>
+                <button class="cta-button" onclick="closeModal('contactModal')" style="width: 100%;">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Booking Modal -->
+    <div id="bookingModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Book Your Session</h2>
+                <button class="close-btn" onclick="closeModal('bookingModal')">&times;</button>
+            </div>
+            <form id="bookingForm" action="https://formspree.io/f/mnjoyjbv" method="POST" onsubmit="handleSubmit(event, 'bookingForm', 'bookingSuccess')">
+                <div class="form-group">
+                    <label for="bookName">Your Name</label>
+                    <input type="text" id="bookName" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="bookEmail">Email Address</label>
+                    <input type="email" id="bookEmail" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="bookPhone">Phone Number</label>
+                    <input type="tel" id="bookPhone" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="serviceType">Interested Service</label>
+                    <select id="serviceType" name="service" required>
+                        <option value="">Select a service...</option>
+                        <option value="Body Awareness">Body Awareness</option>
+                        <option value="Mental Integration">Mental Integration</option>
+                        <option value="Relational Presence">Relational Presence</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="preferredDate">Preferred Date</label>
+                    <input type="date" id="preferredDate" name="preferred_date">
+                </div>
+                <button type="submit" class="form-submit">Schedule Session</button>
+            </form>
+            <div id="bookingSuccess" class="success-message">
+                <h3>Booking Request Sent! 📅</h3>
+                <p>Thank you for your interest. We'll confirm your session time within 24 hours.</p>
+                <button class="cta-button" onclick="closeModal('bookingModal')" style="width: 100%;">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Philosophy Modal -->
+    <div id="philosophyModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Our Philosophy</h2>
+                <button class="close-btn" onclick="closeModal('philosophyModal')">&times;</button>
+            </div>
+            <div style="max-height: 400px; overflow-y: auto; color: var(--neutral-dark);">
+                <p style="margin-bottom: 1rem; line-height: 1.8;">
+                    <strong>Embodied Life Consulting</strong> is built on the belief that the body is a source of infinite wisdom. In our modern world, we've become disconnected from our physical selves, leading to anxiety, confusion, and a sense of being lost.
+                </p>
+                <p style="margin-bottom: 1rem; line-height: 1.8;">
+                    Our philosophy integrates:
+                </p>
+                <ul style="margin-left: 1.5rem; margin-bottom: 1rem; line-height: 1.8;">
+                    <li><strong>Somatic Awareness:</strong> Reconnecting with your body's signals and intuition</li>
+                    <li><strong>Psychological Understanding:</strong> Healing the mind through evidence-based practices</li>
+                    <li><strong>Practical Coaching:</strong> Translating insight into meaningful action</li>
+                    <li><strong>Holistic Wellbeing:</strong> Honoring the interconnection of body, mind, and spirit</li>
+                </ul>
+                <p style="line-height: 1.8;">
+                    We don't believe in quick fixes. Transformation happens through consistent practice, genuine presence, and a commitment to your own growth. We're here to guide you every step of the way.
+                </p>
+            </div>
+            <button class="cta-button" onclick="closeModal('philosophyModal')" style="width: 100%; margin-top: 1.5rem;">Close</button>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>Company</h4>
+                <a href="#about">About Us</a>
+                <a href="#services">Services</a>
+                <a href="#approach">Approach</a>
+            </div>
+            <div class="footer-section">
+                <h4>Resources</h4>
+                <a href="#">Blog</a>
+                <a href="#">Articles</a>
+                <a href="#">Testimonials</a>
+            </div>
+            <div class="footer-section">
+                <h4>Connect</h4>
+                <a href="#">Contact</a>
+                <a href="#">Email</a>
+                <a href="#">LinkedIn</a>
+            </div>
+            <div class="footer-section">
+                <h4>Legal</h4>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Disclaimer</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Embodied Life Consulting. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Modal functionality
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.add('show');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.remove('show');
+                document.body.style.overflow = 'auto';
+                // Reset form if it exists
+                const form = modal.querySelector('form');
+                if (form) {
+                    form.style.display = 'block';
+                    form.reset();
+                }
+                const successMsg = modal.querySelector('.success-message');
+                if (successMsg) {
+                    successMsg.classList.remove('show');
+                }
+            }
+        }
+
+        // Form submission handler
+        function handleSubmit(event, formId, successId) {
+            event.preventDefault();
+            
+            const form = document.getElementById(formId);
+            const submitBtn = form.querySelector('.form-submit');
+            const originalText = submitBtn.textContent;
+            
+            // Disable button and show loading state
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Sending...';
+            
+            const formData = new FormData(form);
+            
+            // Submit to Formspree
+            fetch(form.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }).then(response => {
+                if (response.ok) {
+                    // Show success message
+                    form.style.display = 'none';
+                    const successMsg = document.getElementById(successId);
+                    if (successMsg) {
+                        successMsg.classList.add('show');
+                    }
+                } else {
+                    response.json().then(data => {
+                        alert('Error: ' + (data.errors ? data.errors[0].message : 'Could not send form'));
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = originalText;
+                    });
+                }
+            }).catch(error => {
+                console.error('Error:', error);
+                alert('Error sending message. Please check your internet connection and try again.');
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalText;
+            });
+        }
+
+        // Close modal when clicking outside
+        document.addEventListener('click', function(event) {
+            if (event.target.classList.contains('modal')) {
+                const modals = document.querySelectorAll('.modal.show');
+                modals.forEach(modal => {
+                    closeModal(modal.id);
+                });
+            }
+        });
+
+        // Prevent closing when clicking inside modal content
+        document.querySelectorAll('.modal-content').forEach(content => {
+            content.addEventListener('click', function(event) {
+                event.stopPropagation();
+            });
+        });
+    </script>
+</body>
+</html>
